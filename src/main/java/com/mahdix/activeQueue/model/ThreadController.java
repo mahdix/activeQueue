@@ -8,6 +8,7 @@ import lombok.Getter;
 
 import java.util.function.Supplier;
 
+@SuppressWarnings("unused")
 @Getter
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class ThreadController<T> {
@@ -19,5 +20,7 @@ public class ThreadController<T> {
         return new ThreadController(getState, sendMessageFn);
     }
 
-    //TODO: add a helper function to send a message to a thread
+    public void sendMessage(T msg) throws Exception {
+        sendMessageFn.consume(ThreadMessage.ofData(msg));
+    }
 }

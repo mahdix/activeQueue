@@ -7,6 +7,7 @@ import lombok.Getter;
 
 import java.util.Optional;
 
+@SuppressWarnings("unused")
 @Getter
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class ThreadMessage<T> {

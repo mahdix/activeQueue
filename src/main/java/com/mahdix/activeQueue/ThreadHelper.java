@@ -17,6 +17,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
+@SuppressWarnings("unused")
 public class ThreadHelper {
     public static final Runnable NOOP = () -> {
     };
@@ -72,7 +73,7 @@ public class ThreadHelper {
             long startTime = Instant.now().getEpochSecond();
 
             long reportTime = Instant.now().getEpochSecond() + REPORT_SECONDS;
-            Properties stats = new Properties();
+            Properties stats = Properties.of();
 
             while (true) {
                 if (state.get() == ThreadState.TERMINATING) {
@@ -89,7 +90,6 @@ public class ThreadHelper {
 
                 boolean canContinue = false;
 
-                //TODO: can we replace boolean return with exceptions?
                 try {
                     canContinue = workerFunction.apply(onNewDataMessageHandler, stats, logger);
                 } catch (Exception exc) {
